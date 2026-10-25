@@ -1,0 +1,3 @@
+k,remaining_records,ARI_vs_original,silhouette_without_w0,cluster_sizes_without_w0
+3,240,0.9858980255462585,0.2871460461363488,"[66, 128, 46]"
+4,240,0.9516758696841424,0.3018760790064856,"[74, 45, 66, 55]"

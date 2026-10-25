@@ -1,0 +1,20 @@
+{
+  "status": "EXPLORATORY",
+  "k": 4,
+  "eligible_records": 241,
+  "excluded_records": 3,
+  "features": [
+    "log_searches",
+    "booking_conversion",
+    "booking_completion"
+  ],
+  "scikit_learn_version": "1.6.1",
+  "limitations": [
+    "Limited cluster separation",
+    "Sensitive to low-booking-record exclusion",
+    "Some subsamples change assignments materially",
+    "w_0 geographic meaning unresolved",
+    "No temporal validation",
+    "Driver supply excluded from clustering inputs"
+  ]
+}
