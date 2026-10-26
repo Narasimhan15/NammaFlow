@@ -1,13 +1,27 @@
-# Phase 5 exploratory checkpoint
+# Ward clustering — reviewed exploratory checkpoint
 
-Includes 241 assigned records and 3 excluded zero-booking records. Four-cluster sizes: 71, 46, 69, 55. CSV record counts, unique identifiers, search totals and profile search shares were independently checked and agree.
+Updated 26 October 2026. Notebook 05 covers the clustering component of project roadmap Phase 6, Unsupervised Learning & Anomaly Detection. Anomaly detection remains outstanding.
 
-The supplied notebook contains no stored error outputs. The feature-name correction was originally added as a separate cell; this publication copy incorporates it into saving cell 5.6.1, removes the redundant correction and temporary ZIP-download cells, and removes the obsolete warning output. Python code syntax was checked. The edited notebook was not executed end to end locally, and the joblib artifact was not loaded locally. Original supplied files are unchanged.
+## Scope and findings
 
-Status remains EXPLORATORY: silhouette about 0.30; sensitive to removal of low-booking records; some subsamples change memberships; w_0 geography unresolved; no temporal validation. Driver supply is not a clustering input.
+241 eligible records; three zero-booking records with undefined completion rates excluded from fitting and retained separately. Inputs: log1p(searches), booking conversion and booking completion, standardized before clustering. Driver supply is excluded because temporal compatibility is unverified; w_0 geography remains unresolved.
 
-Upload these notebooks, models and reports folders at the repository root. Suggested commit: Save exploratory ward clustering and sensitivity checks.
+K-Means k=4 silhouette: 0.3000; cluster sizes: 71, 46, 69, 55. Ward hierarchical k=4 silhouette: 0.2588; cluster sizes: 91, 55, 41, 54. Between-method ARI: 0.5588. Broad profiles recur, but memberships differ.
 
-Still pending separately: Phase 4 section 4.11.9 was added in Colab after the last supplied Phase 4 notebook; include that latest Phase 4 notebook in a later checkpoint. Repository dependency requirements also remain to be documented from the working environment.
+The exploratory >=10-bookings scenario retains 174 records and excludes 67. K-Means ARI against the original grouping: 0.3408 with original scaling and 0.2777 with refitted scaling. Ward ARI: 0.3474 with original scaling and 0.1821 with refitted scaling. Ward silhouettes in these scenarios: 0.2755 and 0.2453 respectively.
 
-No GitHub commit or push has been made by Codex for this package.
+Decision: retain K-Means k=4 as an exploratory description of this dataset. Robust operational ward categories have not been established. Cluster assignments alone should not prescribe interventions.
+
+## Review and validation
+
+All nonempty notebook code cells parse; no saved error outputs. New comparison and export cells have execution counts 17–21. Earlier cells retain saved outputs but blank execution counts in this export; prior session screenshots support their execution. This review did not execute the notebook end to end or deserialize the joblib model. The saved reload assertion reports matching assignments.
+
+ZIP integrity, 241 unique assignment IDs, disjoint excluded IDs, cluster counts, and agreement of raw features and K-Means labels between assignment CSVs were checked. Comparison CSVs match supplied notebook outputs.
+
+Publication edits clarify roadmap numbering, remove an empty cell and the redundant standalone reload check already included in 5.6.1. The optional Colab ZIP-download cell remains at the end.
+
+## Outstanding project work
+
+Review anomaly-detection scope, demand–supply temporal compatibility and geographic mapping against the ten-phase roadmap. The latest supervised-learning summary and dependency versions still require separate repository review.
+
+No GitHub commit or push was made by this review.
