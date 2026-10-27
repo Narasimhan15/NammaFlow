@@ -1,0 +1,3 @@
+scenario,records,spearman_on_shared_records,top15_overlap_on_shared_records
+at_least_10_bookings,174,0.9226581257716646,11
+without_w_0,240,0.9952811516906603,14
