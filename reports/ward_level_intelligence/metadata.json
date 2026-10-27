@@ -1,0 +1,24 @@
+{
+  "roadmap_phase": 7,
+  "ward_profile_component": "implemented",
+  "spatial_component": "pending_verified_geographic_mapping",
+  "total_records": 244,
+  "records_with_model_results": 241,
+  "comparison_rules": {
+    "highest_demand": "Top 10 by searches, excluding w_0",
+    "lowest_conversion": "Lowest 10 conversion rates among records with at least 10 bookings, excluding w_0",
+    "search_share_denominator": "Searches across all 244 source records, including w_0",
+    "tie_breaking": "Demand: ward_num ascending; conversion: searches descending, then ward_num ascending"
+  },
+  "input_sha256": {
+    "features": "348dc68ea5d50f23e30388eb8982dc0d897ce4f3fdcf9ed6d80e53b1d54e32af",
+    "clusters": "87bea31111143462c0ca0cf135f4e1b74eea38b5da119bf7d5d682cb03fd514a",
+    "anomalies": "5dc587465fd168cbcd5e3149e8a82ed67c7fccec76108e911f7faf1c354a3012",
+    "exclusions": "af1b94d4f1191c2b82bea8168fc88e13cf4b24930041d210af5f7b850e067a7c"
+  },
+  "versions": {
+    "python": "3.13.18",
+    "pandas": "2.2.3",
+    "numpy": "2.1.3"
+  }
+}
