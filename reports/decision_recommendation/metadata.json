@@ -1,0 +1,72 @@
+{
+  "generated_at_utc": "2026-10-30T17:54:59.986041+00:00",
+  "source_repository_revision": "3600f27ecfe1571920ccdfdb501216cbcad26fed",
+  "input_path": "reports/ward_level_intelligence/ward_profiles.csv",
+  "input_sha256": "4f4bef1184a8668f282da4225d53c0ae681bf201f0e48cabff034c1cca9d35b9",
+  "configuration": {
+    "R01": {
+      "min_searches": 100,
+      "conversion_below": 0.15
+    },
+    "R02": {
+      "min_bookings": 10,
+      "completion_below": 0.5
+    },
+    "R03": {
+      "bookings_below": 10
+    },
+    "R04": {
+      "identifier": "w_0"
+    }
+  },
+  "rule_definitions": {
+    "R01": {
+      "conditions": "searches >= min_searches AND conversion < conversion_below",
+      "excludes_identifier": "w_0",
+      "suggestion": "Inspect search-to-booking funnel and event records."
+    },
+    "R02": {
+      "conditions": "bookings >= min_bookings AND completion < completion_below",
+      "excludes_identifier": "w_0",
+      "suggestion": "Inspect ride progression and cancellation records."
+    },
+    "R03": {
+      "conditions": "bookings < bookings_below",
+      "suggestion": "Review counts before interpreting completion rates; completion is undefined for zero bookings."
+    },
+    "R04": {
+      "conditions": "ward_num == identifier",
+      "suggestion": "Verify identifier meaning before geographic interpretation."
+    }
+  },
+  "records_retained": 244,
+  "records_with_triggers": 147,
+  "total_triggers": 149,
+  "triggers_by_rule": {
+    "R01": 2,
+    "R02": 76,
+    "R03": 70,
+    "R04": 1
+  },
+  "rate_units": "fractions",
+  "missing_values": "blank in CSV; not replaced with zero",
+  "limitations": [
+    "Exploratory configurable thresholds; human review required.",
+    "Threshold sensitivity does not establish accuracy.",
+    "All geographic mappings remain unverified.",
+    "Supply timing compatibility remains unresolved.",
+    "No causal, driver-shortage, uplift or operational-priority claims.",
+    "Clusters and anomaly scores provide context only.",
+    "No triggered rule does not establish that a record has no issues."
+  ],
+  "environment": {
+    "python": "3.13.18",
+    "pandas": "2.2.3",
+    "numpy": "2.1.3"
+  },
+  "output_sha256": {
+    "investigation_suggestions.csv": "08083ad80f254124bb2f79d64fce9c2f3f588de4e34a06cb2c9c06c2e7b494c6",
+    "record_review.csv": "799b4e5c2d0bc50a231e3880decd7ec5ecee1a49b97b1b1a94095672311a2a3b",
+    "threshold_sensitivity.csv": "fd618dd885361768c8e7ec2fc792cf0fdb383fbbdd236599bc90c55fcb54c77a"
+  }
+}

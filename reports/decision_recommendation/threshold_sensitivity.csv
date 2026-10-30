@@ -1,0 +1,16 @@
+rule_id,parameter,value,is_baseline,trigger_count,added_vs_baseline,removed_vs_baseline,jaccard_vs_baseline
+R01,min_searches,50.0,False,3,1,0,0.6666666666666666
+R01,min_searches,100.0,True,2,0,0,1.0
+R01,min_searches,200.0,False,2,0,0,1.0
+R01,conversion_below,0.1,False,0,0,2,0.0
+R01,conversion_below,0.15,True,2,0,0,1.0
+R01,conversion_below,0.2,False,4,2,0,0.5
+R02,min_bookings,10.0,True,76,0,0,1.0
+R02,min_bookings,20.0,False,57,0,19,0.75
+R02,min_bookings,30.0,False,37,0,39,0.4868421052631579
+R02,completion_below,0.4,False,30,0,46,0.39473684210526316
+R02,completion_below,0.5,True,76,0,0,1.0
+R02,completion_below,0.6,False,131,55,0,0.5801526717557252
+R03,bookings_below,5.0,False,35,0,35,0.5
+R03,bookings_below,10.0,True,70,0,0,1.0
+R03,bookings_below,20.0,False,130,60,0,0.5384615384615384
