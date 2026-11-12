@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 import pandas as pd
 
@@ -14,6 +15,16 @@ PROFILE_COLUMNS = [
 SUGGESTION_COLUMNS = [
     "ward_num", "rule_id", "suggested_investigation", "limitations",
 ]
+
+
+def _unique_keys(pairs):
+    """Reject ambiguous JSON mappings rather than silently keep the last name."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"Duplicate ward lookup key: {key}")
+        result[key] = value
+    return result
 
 
 def load_data(root=None):
@@ -66,6 +77,33 @@ def load_data(root=None):
             or values.mod(1).ne(0).any()
         ):
             raise ValueError(f"{column}: expected finite nonnegative counts.")
+
+    lookup_path = root / "data/reference/ward_names.json"
+    with lookup_path.open(encoding="utf-8") as source:
+        metadata = json.load(source, object_pairs_hook=_unique_keys)
+    names = metadata.get("ward_names")
+    if not isinstance(names, dict) or not names or any(
+        not isinstance(key, str) or not key.strip()
+        or not isinstance(value, str) or not value.strip()
+        for key, value in names.items()
+    ):
+        raise ValueError("Ward lookup requires nonblank string identifiers and names.")
+
+    for frame in (profiles, suggestions):
+        frame["ward_name"] = frame["ward_num"].map(names).astype("string")
+        frame["ward_name_status"] = frame["ward_name"].notna().map(
+            {True: "publisher_label_verified", False: "unmapped"}
+        )
+        frame["display_name"] = (
+            frame["ward_name"].fillna("Unknown area") + " (" + frame["ward_num"] + ")"
+        )
+        # Put readable labels first, retaining all original report fields and order.
+        labels = ["ward_name", "display_name", "ward_name_status"]
+        ordered = labels + [column for column in frame.columns if column not in labels]
+        if frame is profiles:
+            profiles = frame[ordered]
+        else:
+            suggestions = frame[ordered]
 
     return profiles, suggestions
 

@@ -26,11 +26,13 @@ app = FastAPI(
         "Historical Bengaluru mobility analytics. "
         "Independent project using Namma Yatri data; "
         "not affiliated with or endorsed by Namma Yatri. "
-        "Record geography is unverified. Investigation suggestions "
+        "Area names use the publisher dashboard lookup; map boundaries and historical "
+        "boundary compatibility remain unverified. Original report geography fields "
+        "and investigation text retain their historical assessment. Investigation suggestions "
         "are exploratory, not confirmed causes or severity rankings. "
         "Summary rates are fractions; report fields retain source units."
     ),
-    version="0.1.0",
+    version="0.2.0",
     lifespan=lifespan,
 )
 
